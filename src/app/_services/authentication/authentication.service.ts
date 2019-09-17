@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   logout() {
     this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   login(loginReq: Login) {
