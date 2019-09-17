@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-9 title">
+                        <h4>Employee List</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid table">
+                    <div class="row thead">
+                        <div class="col-2 td">
+                            Employee Id
+                        </div>
+                        <div class="col-3 td text-left">
+                            First Name
+                        </div>
+                        <div class="col-3 td text-left">
+                            Last Name
+                        </div>
+                        <div class="col-1 td">
+                            Salary
+                        </div>
+                        <div class="col-1 td">
+                            Joining Date
+                        </div>
+                        <div class="col-2 td">
+                            Department
+                        </div>
+                    </div>
+                    <div class="row tr" *ngFor="let report of batReportList">
+                        <div class="col-1 td">
+                            {{report.EmployeeId}}
+                        </div>
+                        <div class="col-2 td text-left">
+                            {{report.FirstName}}
+                        </div>
+                        <div class="col-1 td">
+                            {{report.LastName}}
+                        </div>
+                        <div class="col-1 td">
+                            {{report.Salary}}
+                        </div>
+                        <div class="col-1 td">
+                            {{report.JoiningDate}}
+                        </div>
+                        <div class="col-1 td">
+                            {{report.Department}}
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
