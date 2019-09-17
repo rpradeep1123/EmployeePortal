@@ -1,54 +1,81 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-9 title">
-                        <h4>Employee List</h4>
-                    </div>
+<nav class="navbar top-navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="#">Employee Portal</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user mr-3"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" (click)="logout()"><i
+                            class="fa fa-sign-in mr-2"></i>Log Out</a>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="container-fluid table">
-                    <div class="row thead">
-                        <div class="col-2 td">
-                            Employee Id
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h5 class="title text-center">Employee Details</h5>
+                </div>
+                <div class="card-body ">
+                    <div class="table p-2 d-none d-lg-block d-md-block d-xl-block">
+                        <div class="row th fixme">
+                            <div class="col-1 td">
+                                ID
+                            </div>
+                            <div class="col-3 td">
+                                First Name
+                            </div>
+                            <div class="col-3 td">
+                                Last Name
+                            </div>
+                            <div class="col-1 td">
+                                Salary
+                            </div>
+                            <div class="col-2 td">
+                                Joining Date
+                            </div>
+                            <div class="col-2 td">
+                                Department
+                            </div>
                         </div>
-                        <div class="col-3 td text-left">
-                            First Name
-                        </div>
-                        <div class="col-3 td text-left">
-                            Last Name
-                        </div>
-                        <div class="col-1 td">
-                            Salary
-                        </div>
-                        <div class="col-1 td">
-                            Joining Date
-                        </div>
-                        <div class="col-2 td">
-                            Department
+                        <div class="row tr" *ngFor="let emp of employeeList">
+                            <div class="col-1 td">
+                                {{emp.EmployeeID}}
+                            </div>
+                            <div class="col-3 td">
+                                {{emp.FirstName}}
+                            </div>
+                            <div class="col-3 td">
+                                {{emp.LastName}}
+                            </div>
+                            <div class="col-1 td">
+                                {{emp.Salary}}
+                            </div>
+                            <div class="col-2 td">
+                                {{emp.JoiningDate}}
+                            </div>
+                            <div class="col-2 td">
+                                {{emp.Department}}
+                            </div>
                         </div>
                     </div>
-                    <div class="row tr" *ngFor="let report of batReportList">
-                        <div class="col-1 td">
-                            {{report.EmployeeId}}
+                    <div class="row d-block d-sm-block d-md-none d-lg-none d-xl-none">
+                        <div class="col-sm-12" *ngFor="let emp of employeeList">
+                            <ul class="list-group border mb-3">
+                                <li class="list-group-item"><label class="text-muted">Employee Id : </label><span> {{emp.EmployeeID}}</span></li>
+                                <li class="list-group-item"><label class="text-muted">First Name : </label><span>{{emp.FirstName}}</span></li>
+                                <li class="list-group-item"><label class="text-muted">Last Name : </label><span> {{emp.LastName}}</span></li>
+                                <li class="list-group-item"><label class="text-muted">Salary : </label><span> {{emp.Salary}}</span></li>
+                                <li class="list-group-item"><label class="text-muted">Joining Date : </label><span>{{emp.JoiningDate}}</span></li>
+                                <li class="list-group-item"><label class="text-muted">Department : </label><span>{{emp.Department}}</span></li>
+                            </ul>
                         </div>
-                        <div class="col-2 td text-left">
-                            {{report.FirstName}}
-                        </div>
-                        <div class="col-1 td">
-                            {{report.LastName}}
-                        </div>
-                        <div class="col-1 td">
-                            {{report.Salary}}
-                        </div>
-                        <div class="col-1 td">
-                            {{report.JoiningDate}}
-                        </div>
-                        <div class="col-1 td">
-                            {{report.Department}}
-                        </div>                       
                     </div>
                 </div>
             </div>

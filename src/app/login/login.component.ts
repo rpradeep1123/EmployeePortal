@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication/authentication.service';
-import { Login } from '../_models/login.model';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +12,38 @@ export class LoginComponent implements OnInit {
 
   public userName: string;
   public password: string;
-  public loginRequest: Login;
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  loginForm: FormGroup;
+  isSubmitted = false;
+  loginFailed: boolean;
+
+  return: string;
+
+  constructor(private authService: AuthenticationService, private router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Password: ['', Validators.required]
+    });
+    this.route.queryParams
+      .subscribe(params => this.return = params['return'] || '/');
   }
 
+  get formControls() { return this.loginForm.controls; }
+
   login() {
-    /* this.authService.login(this.loginRequest).subscribe(res => {
+    this.isSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.authService.login(this.loginForm.value).subscribe(res => {
       if (res) {
-        this.router.navigate(['/home']);
+        this.router.navigateByUrl(this.return);
+      } else {
+        this.loginFailed = true;
+        return;
       }
-    }); */
-    this.authService.login(this.loginRequest);
-    this.router.navigate(['/home']);
+    })
   }
 }

@@ -1,11 +1,18 @@
-.login{
-    background-color: white;
-    position: absolute;
-    top: 8vw;
-    border-radius: 2vw;
-    box-shadow: 0 2px 4px 0 rgba(185, 185, 185, 0.5);
-   }
-   .login_content{   
-    background: linear-gradient(270deg, var(--color5), var(--color6));
-    height: 400px;
-   }
+.login-image:after {
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:linear-gradient(23deg,#7a3ec882,#555cc8);
+  }
+
+  .has-error {
+    border-color: rgb(216, 12, 12);
+    color: rgb(230, 14, 14);
+}
+.has-errors{
+    color:red;
+}

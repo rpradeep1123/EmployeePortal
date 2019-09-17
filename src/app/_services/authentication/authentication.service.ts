@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Login } from 'src/app/_models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,26 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
 
   public isLoggedIn: boolean = false;
+  public API_URL: string = "http://localhost:4000/loginUser";
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  signOut() {
+  logout() {
     this.isLoggedIn = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
-  login(loginReq) {
-    this.isLoggedIn=true;
-    return true;
-    /* return this.http.post('local', loginReq).pipe(
+  login(loginReq: Login) {
+    return this.http.get(this.API_URL).pipe(
       map(res => {
-        if (res) this.isLoggedIn = true;
-        return res;
+        if (res["password"] == loginReq.Password && res["username"] == loginReq.Username) {
+          this.isLoggedIn = true;
+          return true;
+        } else {
+          this.isLoggedIn = false;
+          return false;
+        }
       })
-    ); */
+    );
   }
 }

@@ -1,29 +1,47 @@
-<div class="row d-flex justify-content-center login_content">
-    <div class="col-lg-4 p-0 login">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="text-center pt-5 pb-5">Login To Employee Portal</h2>
-                <div class="login_form d-flex justify-content-center">
-                    <form class="form col-12" role="form">
-                        <div class="form-group">
-                            <label for="uname1">Username</label>
-                            <input type="text" class="form-control form-control-md" name="uname1" id="uname1"
-                                required="">
-                            <div class="invalid-feedback">Oops, you missed this one.</div>
+<div class="container-fluid" dynamicHeight>
+    <div class="row d-flex flex-row" style="height:100%">
+        <div
+            class="col-8 login-image d-none d-xl-flex d-lg-flex d-md-flex d-xl-flex flex-column justify-content-center">
+            <img src="../../assets/images/login.jpg" class=" w-100">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 d-flex flex-column justify-content-center p-5">
+            <h3 class="p-5 text-center title">Login</h3>
+            <form [formGroup]="loginForm" class="form" role="form" (ngSubmit)="login()">
+                <div class="form-group pb-3">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-user"></i></div>
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control form-control-md" id="pwd1" required=""
-                                autocomplete="new-password">
-                            <div class="invalid-feedback">Enter your password too!</div>
-                        </div>
-                        <div class="form-group py-4 text-center">
-                            <button type="submit" class="btn btn-primary btn-md  w-50" id="btnLogin"
-                                (click)="login()">Login</button>
-                        </div>
-                    </form>
+                        <input type="text" class="form-control"
+                            [ngClass]="{ 'has-error': isSubmitted && formControls.Username.errors }"
+                            placeholder="Username" formControlName="Username" required>
+                    </div>
+                    <div class="has-errors" *ngIf="isSubmitted && formControls.Username.errors">Oops, you missed this
+                        one.</div>
                 </div>
-            </div>
+                <div class="form-group pb-3">
+                    <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-key"></i></div>
+                        </div>
+                        <input type="password" class="form-control"
+                            [ngClass]="{ 'has-error': isSubmitted && formControls.Password.errors }"
+                            placeholder="Password" formControlName="Password" required>
+                    </div>
+                    <div class="has-errors" *ngIf="isSubmitted && formControls.Password.errors">Enter your password too!
+                    </div>
+                </div>
+                <div>
+                    <div class="alert alert-danger" *ngIf="loginFailed" role="alert">
+                        Login Failed! Invalid UserName or Password
+                    </div>
+                </div>
+                <div class="form-group py-4 text-center">
+                    <button type="submit" class="btn btn-primary btn-md w-50">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
